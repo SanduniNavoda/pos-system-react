@@ -76,7 +76,12 @@ function EditOrder() {
                                             <td>{product.price}</td>
                                             <td>
                                                 <button type="button" className="btn btn-danger btn-sm" onClick={() => {
-                                                    axios.delete(`http://localhost:8080/orders/${id}/product/${product.id}`,config)
+                                                    const data = {
+                                                        productId: product.id,
+                                                        quantity: 1
+                                                    }
+                                                    // axios.delete(`http://localhost:8080/orders/${id}/product/${product.id}`,config)
+                                                    axios.post(`http://localhost:8080/orders/${id}/removeProduct`,data, config)
                                                         .then(function(response) {
                                                             setOrder(response.data);
                                                         })
