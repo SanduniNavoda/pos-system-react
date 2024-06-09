@@ -98,7 +98,20 @@ function Categories(){
                             setCategoryId(category.id)
                             setName(category.name);
                         }}>Edit</button>
+
+                        <button type='button' onClick={() => {
+
+                        axios.delete("http://localhost:8080/categories/" + category.id, config)
+                        .then(function (){
+                            getCategories();
+                        })
+                        .catch(function(error) {
+                            console.log(error);
+                        });
+
+                        }}>Delete</button>
                     </div>
+
                 )
             })}
 
@@ -111,7 +124,7 @@ function Categories(){
 
                     <br />
 
-                    <button type="submit">Create Product</button>
+                    <button type="submit">Create Category</button>
                 </form>
             }
 
@@ -126,7 +139,7 @@ function Categories(){
 
                     <br />
 
-                    <button type="submit">Update category</button>
+                    <button type="submit">Update Category</button>
                 </form>
             }
         </div>

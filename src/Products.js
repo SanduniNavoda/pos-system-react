@@ -131,6 +131,18 @@ function Product(){
                             setQty(product.qty);
                             setCategoryId(product.category?.id);
                         }}>Edit</button>
+
+                        <button type='button' onClick={() => {
+
+                        axios.delete("http://localhost:8080/products/" + product.id, config)
+                        .then(function (){
+                            getProducts();
+                        })
+                        .catch(function(error) {
+                            console.log(error);
+                        });
+
+                        }}>Delete</button>
                     </div>
                 )
             })}
