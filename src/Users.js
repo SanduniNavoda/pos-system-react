@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useAuth } from "./utils/AuthContext";
 
 function Users() {
@@ -97,21 +97,21 @@ function Users() {
   }
 
   return (
-    <div className="App">
+    <div className="App p-3">
 
-      <button type='button' onClick={getUsers}>GET USERS</button>
+      <h5>Users</h5>
 
       {users && users.map((row) => (
-        <div key={row.id}>
+        <div key={row.id} className='p-2'>
           {row.username} - {row.email}
 
-          <button type='button' onClick={() => {
+          <button type='button' className="btn btn-outline-secondary btn-sm m-1" onClick={() => {
             setEdit(row.id);
             setUsername(row.username);
             setEmail(row.email);
           }}>Edit</button>
 
-          <button type='button' onClick={() => {
+          <button type='button' className="btn btn-danger btn-sm" onClick={() => {
 
             axios.delete("http://localhost:8080/users/" + row.id, config)
               .then(function (){
@@ -128,27 +128,27 @@ function Users() {
       }
 
       {!edit &&
-        <div>
+        <div className='p-3'>
           <h2>Create User</h2>
 
           <form onSubmit= {createUser}>
 
             <div>
-              <label>Username</label>
+              <label class="form-label">Username</label>
               <input type='text' onChange={handleUsername} required />
             </div>
 
             <div>
-              <label>Password</label>
+              <label class="form-label">Password</label>
               <input type='password' onChange={handlePassword} required />
             </div>
 
             <div>
-              <label>Email</label>
+              <label class="form-label">Email</label>
               <input type='email' onChange={handleEmail} required />
             </div>
 
-            <button type='submit'>Create User</button>
+            <button type='submit' className="btn btn-primary m-3">Create User</button>
 
           </form>
         </div>
@@ -179,8 +179,8 @@ function Users() {
               <input type='email' onChange={handleEmail} value={email} required />
             </div>
 
-            <button type='submit'>Update User</button>
-            <button type='button' onClick={() => {
+            <button type='submit' class="btn btn-warning btn-sm">Update User</button>
+            <button type='button' className="btn btn-outline-secondary btn-sm m-1" onClick={() => {
               setEdit(null);
             }}>Cancel</button>
 

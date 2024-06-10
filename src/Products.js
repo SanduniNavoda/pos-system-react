@@ -118,12 +118,12 @@ function Product(){
 
             {products && products.map((product) => {
                 return (
-                    <div key={product.id}>
+                    <div className="product p-3 bg-light shadow-sm mb-3 rounded" key={product.id}>
                         <h2>{product.name}</h2>
                         <p>Price: {product.price}</p>
                         <p>Category: {product.category?.name}</p>
                         <p>Qty: {product.qty}</p>
-                        <button type="button" className="btn btn-primary" onClick={() => {
+                        <button type="button" className="btn btn-primary btn-sm m-1" onClick={() => {
                             setEdit(true);
                             setProductId(product.id)
                             setName(product.name);
@@ -132,7 +132,7 @@ function Product(){
                             setCategoryId(product.category?.id);
                         }}>Edit</button>
 
-                        <button type='button' onClick={() => {
+                        <button type='button' className="btn btn-danger btn-sm" onClick={() => {
 
                         axios.delete("http://localhost:8080/products/" + product.id, config)
                         .then(function (){
@@ -147,31 +147,33 @@ function Product(){
                 )
             })}
 
+            <br />
+
             {!edit &&
-                <form onSubmit={createProduct}>
+                <form onSubmit={createProduct} className="m-3">
                     <div>
-                        <label>Name</label>
+                        <label class="form-label">Name</label>
                         <input type="text" onChange={handleName} required></input>
                     </div>
 
                     <br />
 
                     <div>
-                        <label>Price</label>
+                        <label class="form-label">Price</label>
                         <input type="text" onChange={handlePrice} required></input>
                     </div>
 
                     <br />
 
                     <div>
-                        <label>Quantity</label>
+                        <label class="form-label">Quantity</label>
                         <input type="text" onChange={handleQty} required></input>
                     </div>
 
                     <br />
 
                     <div>
-                        <label>Category</label>
+                        <label class="form-label">Category</label>
                         <select onChange={handleCategory} required>
                             <option value="">Select a category</option>
 
@@ -182,7 +184,7 @@ function Product(){
                     </div>
 
                     <br />
-                    <button type="submit">Create Product</button>
+                    <button type="submit" className="btn btn-primary m-3">Create Product</button>
                 </form>
             }
 
@@ -191,28 +193,28 @@ function Product(){
             {edit &&
                 <form onSubmit={updateProduct}>
                     <div>
-                        <label>Name</label>
+                        <label class="form-label">Name</label>
                         <input type="text" onChange={handleName} value={name} required></input>
                     </div>
 
                     <br />
 
                     <div>
-                        <label>Price</label>
+                        <label class="form-label">Price</label>
                         <input type="text" onChange={handlePrice} value={price} required></input>
                     </div>
 
                     <br />
 
                     <div>
-                        <label>Quantity</label>
+                        <label class="form-label">Quantity</label>
                         <input type="text" onChange={handleQty} value={qty} required></input>
                     </div>
 
                     <br />
 
                     <div>
-                        <label>Category</label>
+                        <label class="form-label">Category</label>
                         <select onChange={handleCategory} required>
                             <option value="">Select a category</option>
 
@@ -223,7 +225,7 @@ function Product(){
                     </div>
 
                     <br />
-                    <button type="submit">Update Product</button>
+                    <button type="submit" className="btn btn-warning m-3">Update Product</button>
                 </form>
             }
         </div>

@@ -91,15 +91,15 @@ function Categories(){
 
             {categories && categories.map((category) => {
                 return (
-                    <div key={category.id}>
+                    <div  className="product p-3 bg-light shadow-sm mb-3 rounded" key={category.id}>
                         <h2>{category.name}</h2>
-                        <button type="button" className="btn btn-primary" onClick={() => {
+                        <button type="button" className="btn btn-primary btn-sm" onClick={() => {
                             setEdit(true);
                             setCategoryId(category.id)
                             setName(category.name);
                         }}>Edit</button>
 
-                        <button type='button' onClick={() => {
+                        <button type='button' className="btn btn-danger btn-sm m-1" onClick={() => {
 
                         axios.delete("http://localhost:8080/categories/" + category.id, config)
                         .then(function (){
@@ -115,16 +115,18 @@ function Categories(){
                 )
             })}
 
+            <br />
+
             {!edit &&
                 <form onSubmit={createCategory}>
                     <div>
-                        <label>Name</label>
+                        <label>Name: </label>
                         <input type="text" onChange={handleName} required></input>
                     </div>
 
                     <br />
 
-                    <button type="submit">Create Category</button>
+                    <button className="btn btn-success" type="submit">Create Category</button>
                 </form>
             }
 
@@ -139,7 +141,7 @@ function Categories(){
 
                     <br />
 
-                    <button type="submit">Update Category</button>
+                    <button className="btn btn-warning" type="submit">Update Category</button>
                 </form>
             }
         </div>
