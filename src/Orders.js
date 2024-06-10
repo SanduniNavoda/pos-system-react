@@ -38,6 +38,17 @@ function Orders() {
             });
     }
 
+    function getOrders() {
+
+        axios.get("http://localhost:8080/orders", config)
+          .then(function (response) {
+            setOrders(response.data);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      }
+
     return (
         <div className="container">
             <h1>Orders</h1>
@@ -68,6 +79,18 @@ function Orders() {
                             <td><button className="btn btn-primary btn-sm" onClick={() => {
                                 navigate(`/orders/${order.id}/editOrder`);
                             }}>Edit</button></td>
+                            <td><button type='button' className="btn btn-danger btn-sm" onClick={() => {
+
+                                axios.delete("http://localhost:8080/orders/" + order.id, config)
+                                .then(function (response){
+                                    getOrders(response.data);
+                                })
+                                .catch(function(error) {
+                                    console.log(error);
+                                });
+
+                                }}>Delete</button>
+                            </td>
                         </tr>
                     ))
 
